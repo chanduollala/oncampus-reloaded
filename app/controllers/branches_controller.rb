@@ -7,7 +7,7 @@ class BranchesController < ApplicationController
   # GET /branches
   def index
 
-    @branches = Branch.where(college_id:@college_admin.college.id)
+    @branches = Branch.where(college_id:@user.college.id)
 
     render json: @branches, only: [:id, :abbr]
   end
