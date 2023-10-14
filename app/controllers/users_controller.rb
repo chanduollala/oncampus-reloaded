@@ -80,7 +80,7 @@ class UsersController < ApplicationController
 
   def create_multiple_users
     require 'service/google_spreadsheets_helper'
-    users_json = GoogleSpreadsheetsHelper.create_users_from_spreadsheet(params[:spreadsheet_id])
+    users_json = Service::GoogleSpreadsheetsHelper.create_users_from_spreadsheet(params[:spreadsheet_id])
     if users_json
       users_created = []
       users_failed = []
@@ -140,7 +140,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username], usertype: 'S')
     if @user
       if @user&.authenticate(params[:password])
-        token = JsonWebToken.encode(user_id: @user.id)
+        token = Service::JsonWebToken.encode(user_id: @user.id)
         render json: { token: token }, status: :ok
       else
         render json: { error: 'unauthorized' }, status: :unauthorized
@@ -155,7 +155,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username], usertype: 'CA')
     if @user
       if @user&.authenticate(params[:password])
-        token = JsonWebToken.encode(user_id: @user.id)
+        token = Service::JsonWebToken.encode(user_id: @user.id)
         render json: { token: token }, status: :ok
       else
         render json: { error: 'unauthorized' }, status: :unauthorized
@@ -199,8 +199,8 @@ class UsersController < ApplicationController
 
   def bulk_upload_template
     require 'service/google_spreadsheets_helper'
-    # spread = GoogleSpreadsheetsHelper.create_spreadsheet
-    spread = GoogleSpreadsheetsHelper.create_spreadsheet
+    # spread = Service::GoogleSpreadsheetsHelper.create_spreadsheet
+    spread = Service::GoogleSpreadsheetsHelper.create_spreadsheet
     render json: { link:  spread}
   end
 
@@ -308,7 +308,7 @@ class UsersController < ApplicationController
     header = request.headers['Authorization']
     header = header.split(' ').last if header
     begin
-      @decoded = JsonWebToken.decode(header)
+      @decoded = Service::JsonWebToken.decode(header)
       @user = User.find_by(id:@decoded[:user_id], usertype:'S')
       if @user
         return @user
@@ -325,7 +325,7 @@ class UsersController < ApplicationController
     header = request.headers['Authorization']
     header = header.split(' ').last if header
     begin
-      @decoded = JsonWebToken.decode(header)
+      @decoded = Service::JsonWebToken.decode(header)
       @college_admin = User.find_by(id:@decoded[:user_id], usertype:'CA')
       if @college_admin
         return @college_admin
@@ -342,7 +342,7 @@ class UsersController < ApplicationController
     header = request.headers['Authorization']
     header = header.split(' ').last if header
     begin
-      @decoded = JsonWebToken.decode(header)
+      @decoded = Service::JsonWebToken.decode(header)
       @user = User.find_by(id:@decoded[:user_id])
       if @user
         return @user

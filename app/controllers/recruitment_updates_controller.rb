@@ -107,7 +107,7 @@ class RecruitmentUpdatesController < ApplicationController
       header = request.headers['Authorization']
       header = header.split(' ').last if header
       begin
-        @decoded = JsonWebToken.decode(header)
+        @decoded = Service::JsonWebToken.decode(header)
         @college_admin = User.find_by(id:@decoded[:user_id], usertype:'CA')
         if @college_admin
           return @college_admin
@@ -124,7 +124,7 @@ class RecruitmentUpdatesController < ApplicationController
       header = request.headers['Authorization']
       header = header.split(' ').last if header
       begin
-        @decoded = JsonWebToken.decode(header)
+        @decoded = Service::JsonWebToken.decode(header)
         @user = User.find_by(id:@decoded[:user_id])
         if @user
           return @user
