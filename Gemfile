@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.0.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7"
@@ -52,3 +52,5 @@ gem 'googleauth'
 gem 'google_drive'
 gem 'google-api-client'
 gem 'google-apis-sheets_v4'
+
+gem 'dotenv-rails'

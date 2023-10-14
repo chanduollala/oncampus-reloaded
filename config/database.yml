@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
+  username: oncampus
   password: Chandu@2003
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -51,5 +51,5 @@ test:
 production:
   <<: *default
   database: oncampus_reloaded_production
-  username: oncampus_reloaded
+  username: oncampus
   password: <%= ENV["ONCAMPUS_RELOADED_DATABASE_PASSWORD"] %>
