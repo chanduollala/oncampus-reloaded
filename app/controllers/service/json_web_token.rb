@@ -1,15 +1,19 @@
 module Service
   class JsonWebToken
-    SECRET_KEY = Rails.application.secrets.secret_key_base. to_s
+    def self.secret_key
+      ENV["SECRET_KEY_BASE"]
+#Rails.application.secrets.secret_key_base.to_s
+    end
 
     def self.encode(payload, exp = 24.hours.from_now)
       payload[:exp] = exp.to_i
-      JWT.encode(payload, SECRET_KEY)
+#      print(secret_key)
+      JWT.encode(payload, secret_key)
     end
 
     def self.decode(token)
-      decoded = JWT.decode(token, SECRET_KEY, true )[0]
-      HashWithIndifferentAccess.new decoded
+      decoded = JWT.decode(token, secret_key, true)[0]
+      HashWithIndifferentAccess.new(decoded)
     end
   end
 end
