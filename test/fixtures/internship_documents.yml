@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: MyString
+  document_link: MyString
+  is_verified: false
+
+two:
+  user: two
+  title: MyString
+  document_link: MyString
+  is_verified: false
