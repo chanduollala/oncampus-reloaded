@@ -54,3 +54,4 @@ gem 'google-api-client'
 gem 'google-apis-sheets_v4'
 
 gem 'dotenv-rails'
+gem 'rack-ssl-enforcer'

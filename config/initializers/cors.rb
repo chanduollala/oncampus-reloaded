@@ -7,9 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "chandrashekar.tech"
-    origins "*"
-
+    origins "https://admin.oncampus.pro", "https://stu.oncampus.pro"
+    
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
