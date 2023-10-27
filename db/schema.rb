@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_211815) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_125608) do
   create_table "academic_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.float "current_cgpa"
     t.string "rollno"
@@ -105,6 +105,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_211815) do
     t.index ["user_id"], name: "index_contact_details_on_user_id"
   end
 
+  create_table "internship_documents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "document_link"
+    t.boolean "is_verified"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_internship_documents_on_user_id"
+  end
+
+  create_table "internships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "company_name"
+    t.string "role_title"
+    t.integer "stipend"
+    t.string "start_date"
+    t.string "end_date"
+    t.boolean "noc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_internships_on_user_id"
+  end
+
   create_table "names", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first"
     t.string "middle"
@@ -193,6 +216,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_211815) do
   add_foreign_key "campus_selections", "recruitments"
   add_foreign_key "campus_selections", "users"
   add_foreign_key "contact_details", "users"
+  add_foreign_key "internship_documents", "users"
+  add_foreign_key "internships", "users"
   add_foreign_key "names", "users"
   add_foreign_key "offcampus_selections", "users"
   add_foreign_key "personal_details", "users"

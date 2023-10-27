@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # resources :internship_documents
+  # resources :internships
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -103,5 +105,8 @@ Rails.application.routes.draw do
   get "export/student-data", to: "users#students_data"
   get "export/placement-data", to: "campus_selections#export_placements_data"
   get "placement_summary", to: "campus_selections#placement_summary"
+
+
+
 
 end
