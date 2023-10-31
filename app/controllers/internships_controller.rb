@@ -18,6 +18,8 @@ class InternshipsController < ApplicationController
   def create
     @internship = Internship.new(internship_params)
 
+    @internship.user_id = @user.id
+
     if @internship.save
       render json: @internship, status: :created, location: @internship
     else
