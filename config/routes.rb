@@ -108,5 +108,7 @@ Rails.application.routes.draw do
 
 
 
+  post "internships", to: "internships#create"
+
 
 end

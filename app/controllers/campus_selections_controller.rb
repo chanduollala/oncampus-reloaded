@@ -1,7 +1,7 @@
 class CampusSelectionsController < ApplicationController
   before_action :set_campus_selection, only: %i[ show update destroy ]
   before_action :authorize_collegeadmin_request, only: %i[ create ]
-  before_action :authorize_user_request, only: %i[ search ]
+  before_action :authorize_user_request, only: %i[ search student_summary placement_summary ]
 
   # GET /campus_selections
   def index

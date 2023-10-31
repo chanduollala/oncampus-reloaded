@@ -1,5 +1,6 @@
 class InternshipsController < ApplicationController
   before_action :set_internship, only: %i[ show update destroy ]
+  before_action :authorize_student_request, only: %i[ create ]
 
   # GET /internships
   def index
@@ -46,7 +47,7 @@ class InternshipsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def internship_params
-      params.require(:internship).permit(:user_id, :company_name, :role_title, :stipend, :start_date, :end_date, :noc)
+      params.require(:internship).permit(:user_id, :company_name, :role_title, :stipend, :start_date, :end_date, :noc, :turned_in, :location)
     end
 
     def authorize_student_request

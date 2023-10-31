@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_145740) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_164920) do
   create_table "academic_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.float "current_cgpa"
     t.string "rollno"
@@ -126,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_145740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "turned_in"
+    t.string "location"
     t.index ["user_id"], name: "index_internships_on_user_id"
   end
 
