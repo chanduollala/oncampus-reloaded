@@ -52,20 +52,5 @@ class InternshipsController < ApplicationController
       params.require(:internship).permit(:user_id, :company_name, :role_title, :stipend, :start_date, :end_date, :noc, :turned_in, :location)
     end
 
-    def authorize_student_request
-      header = request.headers['Authorization']
-      header = header.split(' ').last if header
-      begin
-        @decoded = Service::JsonWebToken.decode(header)
-        @user = User.find_by(id:@decoded[:user_id], usertype:'S')
-        if @user
-          return @user
-        end
-        render json: { errors: "unauthorised" }, status: :unauthorized
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { errors: e.message }, status: :unauthorized
-      rescue JWT::DecodeError => e
-        render json: { errors: e.message }, status: :unauthorized
-      end
-    end
+
 end

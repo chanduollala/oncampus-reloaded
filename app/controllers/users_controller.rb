@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_action :authorize_user_request, only: %i[search show_student name_and_image]
   before_action :set_user_by_username, only: %i[ login ]
 
-  require 'service/json_web_token'
 
 
   ######## Students exclusive APIs ###########
@@ -304,133 +303,81 @@ class UsersController < ApplicationController
       params.permit!
     end
 
-  def authorize_student_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    begin
-      @decoded = Service::JsonWebToken.decode(header)
-      @user = User.find_by(id:@decoded[:user_id], usertype:'S')
-      if @user
-        return @user
-      end
-      render json: { errors: "unauthorised" }, status: :unauthorized
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
-    rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
+    def render_student1
+      render json: @user,
+             only: [],
+             include: [
+               name:{
+                 only:[
+                   :first,
+                   :middle,
+                   :last
+                 ]
+               },
+               personal_detail:{
+                 only: [
+                   :gender,
+                   :dob,
+                   :mother_name,
+                   :father_name,
+                   :nationality
+                 ]
+               },
+               contact_detail:{
+                 only:[
+                   :email,
+                   :phone
+                 ]
+               },
+               academic_detail:{
+                 only:[
+                   :current_cgpa,
+                   :rollno,
+                   :yop,
+                   :section,
+                   :backlogs
+                 ],
+                 include:[
+                   branch:{only:[:title, :abbr]}
+                 ]
+               },
+               college:{
+                 only:[
+                   :college_name
+                 ]
+               }
+             ]
     end
-  end
 
-  def authorize_collegeadmin_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    begin
-      @decoded = Service::JsonWebToken.decode(header)
-      @college_admin = User.find_by(id:@decoded[:user_id], usertype:'CA')
-      if @college_admin
-        return @college_admin
-      end
-      render json: { errors: "access denied" }, status: :unauthorized
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
-    rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
+    def render_student
+      render json: @user,
+             only: [],
+             include: [
+               name:{
+                 only:[
+                   :first,
+                   :middle,
+                   :last
+                 ]
+               },
+               contact_detail:{
+                 only:[
+                   :email,
+                   :phone
+                 ]
+               },
+               academic_detail:{
+                 only:[
+                   :current_cgpa,
+                   :rollno,
+                   :yop,
+                   :section,
+                   :backlogs
+                 ],
+                 include:[
+                   branch:{only:[:abbr]}
+                 ]
+               }
+             ]
     end
-  end
-
-  def authorize_user_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    begin
-      @decoded = Service::JsonWebToken.decode(header)
-      @user = User.find_by(id:@decoded[:user_id])
-      if @user
-        return @user
-      end
-      render json: { errors: "access denied" }, status: :unauthorized
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
-    rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
-    end
-  end
-
-
-  def render_student1
-    render json: @user,
-           only: [],
-           include: [
-             name:{
-               only:[
-                 :first,
-                 :middle,
-                 :last
-               ]
-             },
-             personal_detail:{
-               only: [
-                 :gender,
-                 :dob,
-                 :mother_name,
-                 :father_name,
-                 :nationality
-               ]
-             },
-             contact_detail:{
-               only:[
-                 :email,
-                 :phone
-               ]
-             },
-             academic_detail:{
-               only:[
-                 :current_cgpa,
-                 :rollno,
-                 :yop,
-                 :section,
-                 :backlogs
-               ],
-               include:[
-                 branch:{only:[:title, :abbr]}
-               ]
-             },
-             college:{
-               only:[
-                 :college_name
-               ]
-             }
-           ]
-  end
-
-  def render_student
-    render json: @user,
-           only: [],
-           include: [
-             name:{
-               only:[
-                 :first,
-                 :middle,
-                 :last
-               ]
-             },
-             contact_detail:{
-               only:[
-                 :email,
-                 :phone
-               ]
-             },
-             academic_detail:{
-               only:[
-                 :current_cgpa,
-                 :rollno,
-                 :yop,
-                 :section,
-                 :backlogs
-               ],
-               include:[
-                 branch:{only:[:abbr]}
-               ]
-             }
-           ]
-  end
 end
