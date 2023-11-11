@@ -16,7 +16,7 @@ class RecruitmentsController < ApplicationController
 
   # GET /recruitments/1
   def show
-    # @recruitment.recruitment_updates = @recruitment.recruitment_updates.order(end: :asc)
+    @recruitment.recruitment_updates = @recruitment.recruitment_updates.order(created_at: :asc)
 
     render json: @recruitment,
            only: [:id, :role, :ctc, :location,:last_date, :role_type,:completed, :eligibility, :company_id],

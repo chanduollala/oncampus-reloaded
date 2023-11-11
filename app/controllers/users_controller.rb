@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show_student get_image ]
   before_action :authorize_student_request, only: %i[ view_profile update destroy ]
-  before_action :authorize_collegeadmin_request, only: %i[ create  index_by_branch create_multiple_users ]
-  before_action :authorize_user_request, only: %i[search show_student name_and_image]
+  before_action :authorize_collegeadmin_request, only: %i[ create  index_by_branch create_multiple_users show_student ]
+  before_action :authorize_user_request, only: %i[search name_and_image]
   before_action :set_user_by_username, only: %i[ login ]
 
 

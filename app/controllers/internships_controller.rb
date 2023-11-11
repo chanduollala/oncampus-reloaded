@@ -1,10 +1,10 @@
 class InternshipsController < ApplicationController
   before_action :set_internship, only: %i[ show update destroy ]
-  before_action :authorize_student_request, only: %i[ create ]
+  before_action :authorize_student_request, only: %i[ create index ]
 
   # GET /internships
   def index
-    @internships = Internship.all
+    @internships = Internship.where(user_id: @user.id)
 
     render json: @internships
   end
@@ -21,7 +21,7 @@ class InternshipsController < ApplicationController
     @internship.user_id = @user.id
 
     if @internship.save
-      render json: @internship, status: :created, location: @internship
+      render json: @internship, status: :created
     else
       render json: @internship.errors, status: :unprocessable_entity
     end

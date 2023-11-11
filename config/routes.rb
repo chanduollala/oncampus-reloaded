@@ -109,6 +109,8 @@ Rails.application.routes.draw do
 
 
   post "internships", to: "internships#create"
+  get "internships/:id", to: "internships#show"
+  get "internships", to: "internships#index"
 
 
 end
