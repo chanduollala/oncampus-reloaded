@@ -2,9 +2,9 @@ module Service
   class GoogleSpreadsheetsHelper
 
     private
-      @google_json = { "type": "service_account", "project_id": "oncampus1", "private_key_id": "2bcb395b01a0a95a2b6aec4cfe02605c4183b4ef", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTVTTl4I9Bk9kz\n70bZICtc5JVAq+U0rdd2d/sDoeeKra4WqCMoePFXaEUU3kqfwq+C2BYs0X6s8VTy\n/05DsQp0T6B1GXZH3BN70H/eBMxQS2nDDK7NMm0xZfcDshtWbKSiFxly8sAe+NWv\nsqRJ+zOPAI1ua0aIKJ2po1ysW2CUWkJZGFMES/b2Q0fc9DMhHchvBvkGN0niUn/C\n0iH303wNEauyX7YLYGtL9P7ZTcomge52qvqYCGXZhVAJst2Ht7og/6/+we/TOMj3\nhm7Vqsc6DpmelBL9jI1/rdZwHbRXYvex8QwSVEWlVNy34q272jMoa20k5ysFdzKI\njlipf6gnAgMBAAECggEAQtpljYLoTppyz5cWFoGytgQpove93lhQHM3/vjptgNVI\niSpPVPJNhpUZpWxctwVjeETbXvo21IbTlLtnCsrqv7igzepsHHdmQnjGunlSGOSC\nZI2Sjp8xI7tZ1PV26HQd8JjWGCLq2+Fj19zvU+f/e3F1TETrXw9aMNvY6T1O5B7G\nN38m6hvONe48iIhpqmoG9cBCyY9dWo3AtEpsop9BSj44KpVQMlq50w4I+hFTihWk\nZokz/RKfYcLwaMlRw3FblUNRgF4lOT5QJ/xg64rPNiEE01xgO1/ldf+dlidwe7+P\nOVeo8cI3B7pCI52Ny0CnGddpWMBGGSW93Y0prxRwAQKBgQDwllId4q4P3WHQmIOL\nbAOWjIf7CXmGFZwXk7uZ4wbWsPl3heEpIsLqi3sYB2mSVFfdPE8rSM2CSSsaP8ud\nW/ZquGqBo5BMbgu/aciISxuFweKjFHptEeZxxUeHMNsUxOvhRLwtHR2IiodZRXB8\nf5lvYUMexnCrN+Y8G3KAsi8mAQKBgQDg3xvGR5Db9mZATxjbohcQ8V9sgS9IGQja\nDqXn46fM54jvwXFtWeKNE/Nn+rXeR7QJ3ccbpEz1+4FAqIrOaUJiV8DokaDmOwAs\nAEabaqfRruU/CuZ7mCykeMsfzwdFSwsg/EKfhU0nLN1LwkSJV1bQZD4/Di40BIqz\ntL1Q+VzeJwKBgQC1dyyJDilsHfdhdygBSX+LVoRafVMEJ9iMkAm4kNzfoq0H0ht7\nA5Uxg/NctHqUvLlpTcwJQeiAlN/F9MiH8I11AZSUI+L7QyXpQsjWxJAF27AugYu2\nKQJAXiUNe3RDviSMzWOCQ6u7CYH9e7rUrQn2UM5nsBXbj1ZBkBJVsBCQAQKBgCvV\ncc2Rz7wA6OeqQ3c0vnhQBMDa4cOVFbOj3VU5fFEl5PyPYbPmLJJBjFX9egwtP/wY\nXiKWQWZFs2lOMViRDh6ranArSwj2AU+ScjEDdlkaVZeXYVxASpt47Gdz7L/mI/I3\nGimMS4DSbwTAhqma+9I9aCDUe88p/3uORMUPBrpLAoGBANSEiyMNkkooujJITRFn\nmFPD88yZIl9YmynroqKipfq0DevypjMnVkv/pPHKEMsL2GhVEkQSU1+HApbi5KIF\ntgKHmspZpGSt84tcJynuUT7B758HlclCUGnTjyd4o335Bs3uE+//bjP6W9xlyCrW\nyrFhslLkhnZakZam1OgcrZeP\n-----END PRIVATE KEY-----\n", "client_email": "admin1@oncampus1.iam.gserviceaccount.com", "client_id": "115566620386982553662", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin1%40oncampus1.iam.gserviceaccount.com", "universe_domain": "googleapis.com" }
+      # @google_json = { "type": "service_account", "project_id": "oncampus1", "private_key_id": "2bcb395b01a0a95a2b6aec4cfe02605c4183b4ef", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTVTTl4I9Bk9kz\n70bZICtc5JVAq+U0rdd2d/sDoeeKra4WqCMoePFXaEUU3kqfwq+C2BYs0X6s8VTy\n/05DsQp0T6B1GXZH3BN70H/eBMxQS2nDDK7NMm0xZfcDshtWbKSiFxly8sAe+NWv\nsqRJ+zOPAI1ua0aIKJ2po1ysW2CUWkJZGFMES/b2Q0fc9DMhHchvBvkGN0niUn/C\n0iH303wNEauyX7YLYGtL9P7ZTcomge52qvqYCGXZhVAJst2Ht7og/6/+we/TOMj3\nhm7Vqsc6DpmelBL9jI1/rdZwHbRXYvex8QwSVEWlVNy34q272jMoa20k5ysFdzKI\njlipf6gnAgMBAAECggEAQtpljYLoTppyz5cWFoGytgQpove93lhQHM3/vjptgNVI\niSpPVPJNhpUZpWxctwVjeETbXvo21IbTlLtnCsrqv7igzepsHHdmQnjGunlSGOSC\nZI2Sjp8xI7tZ1PV26HQd8JjWGCLq2+Fj19zvU+f/e3F1TETrXw9aMNvY6T1O5B7G\nN38m6hvONe48iIhpqmoG9cBCyY9dWo3AtEpsop9BSj44KpVQMlq50w4I+hFTihWk\nZokz/RKfYcLwaMlRw3FblUNRgF4lOT5QJ/xg64rPNiEE01xgO1/ldf+dlidwe7+P\nOVeo8cI3B7pCI52Ny0CnGddpWMBGGSW93Y0prxRwAQKBgQDwllId4q4P3WHQmIOL\nbAOWjIf7CXmGFZwXk7uZ4wbWsPl3heEpIsLqi3sYB2mSVFfdPE8rSM2CSSsaP8ud\nW/ZquGqBo5BMbgu/aciISxuFweKjFHptEeZxxUeHMNsUxOvhRLwtHR2IiodZRXB8\nf5lvYUMexnCrN+Y8G3KAsi8mAQKBgQDg3xvGR5Db9mZATxjbohcQ8V9sgS9IGQja\nDqXn46fM54jvwXFtWeKNE/Nn+rXeR7QJ3ccbpEz1+4FAqIrOaUJiV8DokaDmOwAs\nAEabaqfRruU/CuZ7mCykeMsfzwdFSwsg/EKfhU0nLN1LwkSJV1bQZD4/Di40BIqz\ntL1Q+VzeJwKBgQC1dyyJDilsHfdhdygBSX+LVoRafVMEJ9iMkAm4kNzfoq0H0ht7\nA5Uxg/NctHqUvLlpTcwJQeiAlN/F9MiH8I11AZSUI+L7QyXpQsjWxJAF27AugYu2\nKQJAXiUNe3RDviSMzWOCQ6u7CYH9e7rUrQn2UM5nsBXbj1ZBkBJVsBCQAQKBgCvV\ncc2Rz7wA6OeqQ3c0vnhQBMDa4cOVFbOj3VU5fFEl5PyPYbPmLJJBjFX9egwtP/wY\nXiKWQWZFs2lOMViRDh6ranArSwj2AU+ScjEDdlkaVZeXYVxASpt47Gdz7L/mI/I3\nGimMS4DSbwTAhqma+9I9aCDUe88p/3uORMUPBrpLAoGBANSEiyMNkkooujJITRFn\nmFPD88yZIl9YmynroqKipfq0DevypjMnVkv/pPHKEMsL2GhVEkQSU1+HApbi5KIF\ntgKHmspZpGSt84tcJynuUT7B758HlclCUGnTjyd4o335Bs3uE+//bjP6W9xlyCrW\nyrFhslLkhnZakZam1OgcrZeP\n-----END PRIVATE KEY-----\n", "client_email": "admin1@oncampus1.iam.gserviceaccount.com", "client_id": "115566620386982553662", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin1%40oncampus1.iam.gserviceaccount.com", "universe_domain": "googleapis.com" }
 
-#    @google_json = ENV['GOOGLE_CLOUD_SERVICE_ACCOUNT_CONFIG']
+   @google_json = JSON.parse(ENV['GOOGLE_JSON'])
     def self.create_spreadsheet
 
       require 'google_drive'
@@ -358,6 +358,105 @@ module Service
       # service.batch_update_spreadsheet(spreadsheet.key, publish_request)
 
 
+    end
+
+
+    def self.upload_internship_document(file, internship_id, type)
+
+      @internship = Internship.find(internship_id)
+
+
+      # Authenticate using the service account credentials JSON
+      session = GoogleDrive::Session.from_service_account_key(StringIO.new(@google_json.to_json))
+
+      # # Get the root collection (folder) of the Drive
+      # root_collection = session.collection_by_title('Root')
+
+      # Check if the 'Internships' folder exists
+      # main_folder = session.collection_by_title('My Drive')
+      main_folder = session.collection_by_id('1ZGAIYpvebDKp9pQFFoz5Am1ufNZh6U1v')
+
+      # unless main_folder
+      #   main_folder = session.create_collection('Internships')
+      #   puts "Folder 'Internships' created successfully."
+      # else
+      #   puts "Folder 'Internships' already exists."
+      # end
+
+      @academic_detail = @internship.user.academic_detail
+      class_folder_title=
+      @academic_detail.yop.to_s + " "+
+      @academic_detail.branch.abbr+ " "+
+      @academic_detail.section
+
+
+
+      # Check if the 'CSE-B' folder exists within 'Internships'
+      class_folder = main_folder.subcollection_by_title(class_folder_title)
+
+      # If the 'CSE-B' folder doesn't exist, create it
+      unless class_folder
+        class_folder = main_folder.create_subcollection(class_folder_title)
+        puts "Folder '#{class_folder_title}' created successfully within 'Internships'."
+      else
+        puts "Folder '#{class_folder_title}' already exists within 'Internships'."
+      end
+
+      student_folder = class_folder.subcollection_by_title(@academic_detail.rollno)
+
+      unless student_folder
+        student_folder = class_folder.create_subcollection(@academic_detail.rollno)
+        puts "Folder '#{@academic_detail.rollno}' created successfully within '#{class_folder_title}'."
+      else
+        puts "Folder '#{@academic_detail.rollno}' already exists within '#{class_folder_title}'."
+      end
+
+
+      internship_folder = student_folder.subcollection_by_title(@internship.company_name)
+
+      unless internship_folder
+        internship_folder = student_folder.create_subcollection(@internship.company_name)
+        puts "Folder '#{@internship.company_name}' created successfully within '#{@academic_detail.rollno}'."
+      else
+        puts "Folder '#{@internship.company_name}' already exists within '#{@academic_detail.rollno}'."
+      end
+
+
+      if file
+        file_name = file.original_filename
+
+
+        file_exists = internship_folder.files.any? { |f| File.basename(f.title, ".*") ==  File.basename(file_name, ".*")}
+
+        if file_exists
+          # Overwrite the existing file
+          existing_file = internship_folder.files.find { |f| File.basename(f.title, ".*") ==  File.basename(file_name, ".*") }
+          existing_file.delete
+        end
+
+        file  = internship_folder.upload_from_string(file.read, file_name, convert: false)
+        puts "File '#{file_name}' uploaded to '#{@internship.company_name}' folder."
+
+        file.id
+      else
+        false
+      end
+    end
+
+    def self.fetch_thumbnail(file_id, width = 100)
+      # Assuming 'session' is already configured in the initializer
+      session = GoogleDrive::Session.from_service_account_key(StringIO.new(@google_json.to_json))
+
+      # Fetch file metadata using the file ID
+      file = session.file_by_id(file_id)
+
+      # Get the thumbnail link with the specified width
+      thumbnail_link = file.thumbnail_link
+
+      # Now you can use the thumbnail_link to display the thumbnail
+      # For example, you can use an image_tag in your view
+      # image_tag(thumbnail_link)
+      thumbnail_link
     end
   end
 

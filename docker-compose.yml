@@ -1,0 +1,12 @@
+version: '1.1'
+Services::
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+#    environment:
+#      - REGMAXX_DATABASE_HOST=regmaxx-prod.mysql.database.azure.com
+#      - REGMAXX_DATABASE_USER=chanduollala
+#      - REGMAXX_DATABASE_PASSWORD=co@20032003
+    ports:
+      - "80:3000"

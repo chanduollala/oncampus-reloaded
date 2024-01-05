@@ -11,7 +11,7 @@ class InternshipsController < ApplicationController
 
   # GET /internships/1
   def show
-    render json: @internship
+    render json: @internship, include: [:internship_documents]
   end
 
   # POST /internships
@@ -29,6 +29,7 @@ class InternshipsController < ApplicationController
 
   # PATCH/PUT /internships/1
   def update
+    internship_params[:noc]=false
     if @internship.update(internship_params)
       render json: @internship
     else
@@ -39,6 +40,16 @@ class InternshipsController < ApplicationController
   # DELETE /internships/1
   def destroy
     @internship.destroy
+  end
+
+
+  def unverified_count
+    render json: Internship.where(noc:false).count, status: :ok
+  end
+
+
+  def pending_submissions
+    render json: Internship.where(noc:false), include: [user: {include: [:name, academic_detail: {only: :rollno}], only: []}, ]
   end
 
   private

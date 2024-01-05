@@ -9,24 +9,39 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
+#default: &default
+#  adapter: mysql2
+#  encoding: utf8mb4
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  username: root
+#  password: Chandu@2003
+#  socket: /tmp/mysql.sock
+
+#development:
+#  <<: *default
+#  database: regmaxx_development
+
+
 default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: <%= ENV["ONCAMPUS_RELOADED_DATABASE_PASSWORD"] %>
-  socket: /tmp/mysql.sock
+#  host: regmaxx-prod.mysql.database.azure.com
 
-development:
-  <<: *default
-  database: oncampus_reloaded_development
+
+#development:
+#  <<: *default
+#  database: regmaxx_development
+#  username: root
+#  password: Chandu@2003
+#  socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: oncampus_reloaded_test
+#test:
+#  <<: *default
+#  database: oncampus_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,6 +65,14 @@ test:
 #
 production:
   <<: *default
-  database: oncampus_reloaded_production
-  username: root
-  password: <%= ENV["ONCAMPUS_RELOADED_DATABASE_PASSWORD"] %>
+  host: <%= ENV["REGMAXX_DATABASE_HOST"] %>
+  database: oncampus_production
+  username: <%= ENV["REGMAXX_DATABASE_USER"] %>
+  password: <%= ENV["REGMAXX_DATABASE_PASSWORD"] %>
+
+development:
+  <<: *default
+  host: <%= ENV["REGMAXX_DATABASE_HOST"] %>
+  database: oncampus_development
+  username: <%= ENV["REGMAXX_DATABASE_USER"] %>
+  password: <%= ENV["REGMAXX_DATABASE_PASSWORD"] %>

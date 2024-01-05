@@ -24,6 +24,32 @@ class InternshipDocumentsController < ApplicationController
     end
   end
 
+  def upload_doc
+    @internship_id = params[:id]
+    drive_file_id = Service::GoogleSpreadsheetsHelper.upload_internship_document(params[:file], 1, params[:type])
+    if drive_file_id
+
+      doc = InternshipDocument.find_by(title: File.basename(params[:file].original_filename, ".*"))
+      unless doc
+        doc = InternshipDocument.new
+      end
+      doc.internship_id = @internship_id
+      doc.document_link = drive_file_id
+      doc.is_verified = false
+      doc.title = params[:file].original_filename
+
+      if doc.save
+        Internship.find(@internship_id).update(noc:false)
+        render json: {id: doc.id}, status: :created
+      else
+        render json: doc.errors, status: :unprocessable_entity
+      end
+    else
+      render json: {}, status: :unprocessable_entity
+    end
+
+  end
+
   # PATCH/PUT /internship_documents/1
   def update
     if @internship_document.update(internship_document_params)
@@ -31,6 +57,11 @@ class InternshipDocumentsController < ApplicationController
     else
       render json: @internship_document.errors, status: :unprocessable_entity
     end
+  end
+
+
+  def get_thumbnail
+    redirect_to Service::GoogleSpreadsheetsHelper.fetch_thumbnail(params[:file_id]), allow_other_host: true
   end
 
   # DELETE /internship_documents/1

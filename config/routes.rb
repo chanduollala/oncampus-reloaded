@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
 
 
+
+
   ################ Only for college admins. #########
 
   # Identifies user by student ID
@@ -112,5 +114,15 @@ Rails.application.routes.draw do
   get "internships/:id", to: "internships#show"
   get "internships", to: "internships#index"
 
+  post "internship/document/:id", to: "internship_documents#upload_doc"
 
+  get "get-thumbnail", to: "internship_documents#get_thumbnail"
+  get "unverified_count", to: "internships#unverified_count"
+  get "submissions/internship", to: "internships#pending_submissions"
+
+  put "internships/:id", to: "internships#update"
+  delete "internships/:id", to: "internships#destroy"
+
+  put "internship/document/:id", to: "internship_documents#update"
+  delete "internship/document/:id", to: "internship_documents#destroy"
 end
